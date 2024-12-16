@@ -31,6 +31,13 @@ public class Projectile : MonoBehaviour
         hit = true;
         boxCollider.enabled = false;
         anim.SetTrigger("explode");
+        if (collision.tag =="Enemy")
+        {
+            Destroy(collision.gameObject);
+
+        }
+
+
     }
     public void SetDirection(float _direction)
     {
