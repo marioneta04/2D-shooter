@@ -41,7 +41,7 @@ public class RangedEnemy : MonoBehaviour
             if (cooldownTimer >= attackCooldown)
             {
                 cooldownTimer = 0;
-                anim.SetTrigger("RangedAttack");
+                anim.SetTrigger("rangedAttack");
             }
         }
 

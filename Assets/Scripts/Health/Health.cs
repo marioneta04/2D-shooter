@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -39,13 +40,9 @@ public class Health : MonoBehaviour
         {
             if (!dead)
             {
-                anim.SetTrigger("die");
 
-                //Deactivate all attached component classes
-                foreach (Behaviour component in components)
-                    component.enabled = false;
 
-                dead = true;
+                SceneManager.LoadScene(0);
             }
         }
     }
@@ -53,6 +50,7 @@ public class Health : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
+
     private IEnumerator Invunerability()
     {
         invulnerable = true;
@@ -66,6 +64,18 @@ public class Health : MonoBehaviour
         }
         Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
+    }
+    public void Respawn()
+    {
+        dead = false;
+        AddHealth(startingHealth);
+        anim.ResetTrigger("die");
+        anim.Play("idle");
+        StartCoroutine(Invunerability());
+
+        
+        foreach (Behaviour component in components)
+            component.enabled = true;
     }
 
 
