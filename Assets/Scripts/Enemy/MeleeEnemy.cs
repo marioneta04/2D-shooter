@@ -17,7 +17,7 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     private float cooldownTimer = Mathf.Infinity;
 
-    //References
+    
     private Animator anim;
     private Health playerHealth;
     private EnemyPatrol enemyPatrol;
@@ -32,7 +32,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         cooldownTimer += Time.deltaTime;
 
-        //Attack only when player in sight?
+        
         if (PlayerInSight())
         {
             if (cooldownTimer >= attackCooldown)
